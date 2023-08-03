@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/upload-doc">Upload</a>
+      <a mat-list-item routerLink="/afficher-donnees">Afficher Données</a>
+      <a mat-list-item routerLink="/recherche-donnees">Recherche Données</a>
+      <a mat-list-item routerLink="/analyse-stat">Analyse Statistique</a>
+      <!-- Ajoutez d'autres liens ici -->
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
