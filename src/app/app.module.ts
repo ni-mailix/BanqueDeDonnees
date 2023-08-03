@@ -11,7 +11,7 @@ import { AnalyseStatComponent } from './analyse-stat/analyse-stat.component';
 import { PagePrincipaleComponent } from './page-principale/page-principale.component';
 import { FormsModule } from '@angular/forms';
 
-import { AuthentificationService } from './authentification.service'; // Assurez-vous d'importer correctement le chemin
+import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 
 @NgModule({
   declarations: [

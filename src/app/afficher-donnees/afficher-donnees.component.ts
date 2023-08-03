@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-afficher-donnees',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AfficherDonneesComponent {
 
+  constructor(private databaseService: DatabaseService) { }
+
+  // Utilisez le service de base de données ici
 }
