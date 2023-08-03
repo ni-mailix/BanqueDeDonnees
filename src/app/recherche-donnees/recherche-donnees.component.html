@@ -1,1 +1,21 @@
-<p>recherche-donnees works!</p>
+<form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique">
+    <input [(ngModel)]="recherche.diplome" placeholder="Diplôme">
+    <input [(ngModel)]="recherche.universite" placeholder="Université">
+    <input [(ngModel)]="recherche.experience" placeholder="Expérience">
+    <input [(ngModel)]="recherche.langue" placeholder="Langue">
+    <!-- Ajoutez d'autres champs de recherche selon vos besoins -->
+    <button type="submit">Rechercher</button>
+  </form>
+  
+  <!-- Afficher les résultats de recherche -->
+  <div *ngIf="(resultatsDeRecherche.length > 0)">
+    <h2>Résultats de recherche :</h2>
+    <ul>
+      <li *ngFor="let resultat of resultatsDeRecherche">
+        <h3>{{ resultat.nom }}</h3>
+        <p>{{ resultat.description }}</p>
+      </li>
+    </ul>
+  </div>
+  

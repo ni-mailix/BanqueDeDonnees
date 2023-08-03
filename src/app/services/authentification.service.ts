@@ -16,4 +16,12 @@ export class AuthentificationService {
       return false;
     }
   }
+
+  // Méthode pour vérifier si l'utilisateur est authentifié
+  isAuthenticated(): boolean {
+    // Implémentez ici la logique pour vérifier si l'utilisateur est authentifié
+    // Renvoyez true si authentifié, false sinon
+    // Par exemple, vous pourriez vérifier si un jeton d'authentification est valide
+    return true; // Remplacez par la logique réelle
+  }
 }
