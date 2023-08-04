@@ -1,3 +1,13 @@
 .mat-sidenav {
     height: 100%; /* Utilisez 100vh pour occuper toute la hauteur de l'écran */
   }
+
+  .page-container
+  {
+    height: 100%;
+  }
+
+  .full-height {
+    height: 100vh; /* Utilisez 100vh pour occuper toute la hauteur de l'écran */
+  }
+  
