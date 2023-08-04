@@ -9,7 +9,9 @@ import { AuthentificationService } from '../services/authentification.service';
 })
 export class PagePrincipaleComponent {
 
-  constructor(private authService: AuthentificationService, private router: Router) { }
+  constructor(private authService: AuthentificationService, private router: Router) { 
+    console.log("page-principale"+this.authService.isAuthenticated())
+  }
 
   onLogout(): void {
     this.authService.logout();

@@ -16,7 +16,10 @@ export class AppComponent {
 
   // Méthode pour vérifier l'état d'authentification lors du chargement de l'application
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+   // this.isAuthenticated = this.authService.isAuthenticated();
+    //this.isAuthenticated = !this.authService.isAuthenticated();
+    // this.isAuthenticated = false;
+    console.log("ngoninit " + this.isAuthenticated);
   }
 
   // Méthode pour déconnecter l'utilisateur
