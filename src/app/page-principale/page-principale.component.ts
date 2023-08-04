@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthentificationService } from '../services/authentification.service';
 
 @Component({
   selector: 'app-page-principale',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class PagePrincipaleComponent {
 
+  constructor(private authService: AuthentificationService, private router: Router) { }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/authentification']);
+  }
 }

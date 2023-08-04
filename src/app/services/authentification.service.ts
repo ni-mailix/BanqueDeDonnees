@@ -24,4 +24,7 @@ export class AuthentificationService {
     // Par exemple, vous pourriez vérifier si un jeton d'authentification est valide
     return true; // Remplacez par la logique réelle
   }
+  logout(): void {
+    // Implémentez ici la logique de déconnexion
+  }
 }

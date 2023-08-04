@@ -1,0 +1,30 @@
+.mat-sidenav-container {
+    height: 100vh;
+  }
+  
+  .mat-sidenav {
+    width: 250px;
+  }
+  
+  .mat-sidenav-content {
+    padding: 16px;
+  }
+  
+  .right-sidenav-content {
+    margin-left: 240px; /* Ajustez cette valeur en fonction de la largeur de votre sidenav gauche */
+  }
+  
+  .page-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Sidenav à gauche, contenu à droite */
+    height: 100vh; /* Occupe toute la hauteur de l'écran */
+  }
+  
+  .sidenav-container {
+    grid-column: 1; /* Sidenav dans la première colonne */
+  }
+  
+  .content {
+    grid-column: 2; /* Contenu dans la deuxième colonne */
+  }
+  
