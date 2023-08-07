@@ -9,8 +9,13 @@ import { AuthentificationService } from '../services/authentification.service';
 })
 export class PagePrincipaleComponent {
 
+  isAuthenticated: boolean = false;
+
   constructor(private authService: AuthentificationService, private router: Router) { 
-    console.log("page-principale"+this.authService.isAuthenticated())
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+    console.log("page-principale", this.isAuthenticated);
   }
 
   onLogout(): void {

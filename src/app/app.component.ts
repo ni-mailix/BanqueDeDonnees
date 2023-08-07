@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './services/authentification.service';
 
@@ -7,22 +7,20 @@ import { AuthentificationService } from './services/authentification.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-   title = 'BanqueDeDonnees';
+  title = 'BanqueDeDonnees';
   isAuthenticated: boolean = false;
 
   constructor(private authService: AuthentificationService, private router: Router) { }
 
-  // Méthode pour vérifier l'état d'authentification lors du chargement de l'application
   ngOnInit(): void {
-   // this.isAuthenticated = this.authService.isAuthenticated();
-    //this.isAuthenticated = !this.authService.isAuthenticated();
-    // this.isAuthenticated = false;
+    this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
     console.log("ngoninit " + this.isAuthenticated);
   }
 
-  // Méthode pour déconnecter l'utilisateur
   onLogout(): void {
     this.authService.logout();
     this.isAuthenticated = false;

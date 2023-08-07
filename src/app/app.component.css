@@ -1,13 +1,33 @@
+.mat-sidenav-container {
+  height: 100vh;
+}
+
 .mat-sidenav {
-    height: 100%; /* Utilisez 100vh pour occuper toute la hauteur de l'écran */
-  }
+  width: 250px;
+}
 
-  .page-container
-  {
-    height: 100%;
-  }
+.mat-sidenav-content {
+  padding: 16px;
+}
 
-  .full-height {
-    height: 100vh; /* Utilisez 100vh pour occuper toute la hauteur de l'écran */
-  }
-  
+.right-sidenav-content {
+  margin-left: 240px; /* Ajustez cette valeur en fonction de la largeur de votre sidenav gauche */
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Sidenav à gauche, contenu à droite */
+  height: 100vh; /* Occupe toute la hauteur de l'écran */
+}
+
+.sidenav-container {
+  grid-column: 1; /* Sidenav dans la première colonne */
+}
+
+.content {
+  grid-column: 2; /* Contenu dans la deuxième colonne */
+}
+
+.full-height {
+  height: 100vh; /* Utilisez 100vh pour occuper toute la hauteur de l'écran */
+}

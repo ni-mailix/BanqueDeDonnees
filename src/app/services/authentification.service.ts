@@ -1,36 +1,27 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
 
-etat = false;
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor() { }
 
-  // Méthode pour la vérification de l'authentification
   authenticate(username: string, password: string): boolean {
-    // Remplacez cette logique par la vérification réelle des informations d'identification
     if (username === 'utilisateur' && password === 'motdepasse') {
-      this.etat=true;
+      this.isAuthenticatedSubject.next(true);
       return true;
     } else {
-      this.etat=false;
-
+      this.isAuthenticatedSubject.next(false);
       return false;
     }
   }
 
-  // Méthode pour vérifier si l'utilisateur est authentifié
-  isAuthenticated(): boolean {
-    // Implémentez ici la logique pour vérifier si l'utilisateur est authentifié
-    // Renvoyez true si authentifié, false sinon
-    // Par exemple, vous pourriez vérifier si un jeton d'authentification est valide
-    return this.etat; // Remplacez par la logique réelle
-  }
   logout(): void {
-    
-    // Implémentez ici la logique de déconnexion
+    this.isAuthenticatedSubject.next(false);
   }
 }

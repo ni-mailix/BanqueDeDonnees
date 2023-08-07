@@ -1,21 +1,28 @@
-<div >
-  <!-- Colonne de gauche avec le sidenav -->
-  <mat-drawer-container  class="full-height">
-    <mat-drawer mode="side" opened >
-      <mat-nav-list>
-        <!-- <a mat-list-item routerLink="/authentification">Authentification</a> -->
-        <ng-container >
-          <a mat-list-item routerLink="/upload-doc">Upload</a>
-          <a mat-list-item routerLink="/afficher-donnees">Afficher Données</a>
-          <a mat-list-item routerLink="/recherche-donnees">Recherche Données</a>
-          <a mat-list-item routerLink="/analyse-stat">Analyse Statistique</a>
-          <button mat-button (click)="onLogout()">Déconnexion</button>
-        </ng-container>
-      </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content>      
-      <p>test22222</p>      
-      <router-outlet></router-outlet>
-    </mat-drawer-content>
-  </mat-drawer-container>
-</div>
+
+ <!-- Colonne de gauche avec le sidenav -->
+ <mat-drawer-container  class="full-height" >
+  <mat-drawer  mode="side" [opened]="isAuthenticated" disableFullscreen="true">
+    <p>app.component.ts -- colonne gauche</p>
+    <mat-nav-list>
+      <!-- <a mat-list-item routerLink="/authentification">Authentification</a> -->
+      <!-- <ng-container > -->
+        <a mat-list-item [routerLink]="['/upload-doc']">
+          Upload
+        </a>
+        <a mat-list-item [routerLink]="['/afficher-donnees']">
+          Afficher Données
+        </a>
+        <a mat-list-item [routerLink]="['/recherche-donnees']">
+          Recherche Données
+        </a>
+        <a mat-list-item [routerLink]="['/analyse-stat']">
+          Analyse Statistique
+        </a>
+        <button mat-button (click)="onLogout()">Déconnexion</button>
+      <!-- </ng-container> -->
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>              
+    <app-page-principale><p>app.component.ts -- colonne droite</p></app-page-principale>
+  </mat-drawer-content>
+</mat-drawer-container>
