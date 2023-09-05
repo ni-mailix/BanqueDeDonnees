@@ -14,6 +14,9 @@ import { RechercheDonneesComponent } from './recherche-donnees/recherche-donnees
 import { AnalyseStatComponent } from './analyse-stat/analyse-stat.component';
 import { PagePrincipaleComponent } from './page-principale/page-principale.component';
 import { FormsModule } from '@angular/forms';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbCardModule } from '@nebular/theme';
+import { OCRResultService } from './services/ocr-result.service';
 
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 
@@ -34,9 +37,12 @@ import { AuthentificationService } from './services/authentification.service'; /
     MatListModule,
     MatIconModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbCardModule
   ],
-  providers: [AuthentificationService], // Ajoutez AuthentificationService ici
+  providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]
 })
 export class AppModule { }

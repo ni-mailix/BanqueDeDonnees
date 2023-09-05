@@ -1,6 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { UploadService } from '../services/upload.service';
-import { ExtractionService } from '../services/extraction.service'; // Importez le service d'extraction
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ExtractionService } from '../services/extraction.service';
+import { OCRResult } from '../ocr-result';
+import { OCRResultService } from '../services/ocr-result.service';
 
 @Component({
   selector: 'app-upload-doc',
@@ -8,30 +10,37 @@ import { ExtractionService } from '../services/extraction.service'; // Importez 
   styleUrls: ['./upload-doc.component.css']
 })
 export class UploadDocComponent {
-
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private uploadService: UploadService, private extractionService: ExtractionService) { }
+  constructor(
+    private extractionService: ExtractionService,
+    private router: Router,
+    private ocrResultService: OCRResultService
+  ) {}
 
   onSubmit(event: Event): void {
-    event.preventDefault(); // Empêche le rechargement de la page
+    event.preventDefault();
 
-    const fileInput = this.fileInput.nativeElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      const file: File = fileInput.files[0];
+    if (this.fileInput.nativeElement.files && this.fileInput.nativeElement.files.length > 0) {
+      const file: File = this.fileInput.nativeElement.files[0];
 
-      // Utilisez le service d'extraction ici
       this.extractionService.extractInformation(file).subscribe(
-        (result) => {
-          console.log('Informations extraites :', result);
+        (ocrResult: OCRResult) => {
+          console.log('Informations extraites :', ocrResult);
+
+          // Stockez les données extraites dans le service OCRResultService
+          this.ocrResultService.storeExtractedInformation(ocrResult.extractedText);
+
+          // Naviguer vers la page ocr-result
+          this.router.navigate(['/ocr-result']);
         },
-        (error) => {
+        (error: any) => {
           console.error('Erreur lors de l\'extraction :', error);
         }
       );
 
       // Réinitialiser le champ de sélection de fichier après l'upload
-      fileInput.value = '';
+      this.fileInput.nativeElement.value = '';
     }
   }
 }

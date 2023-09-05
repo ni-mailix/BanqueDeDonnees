@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { OCRResult } from '../ocr-result';
+import { createWorker, createScheduler } from 'tesseract.js';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +11,28 @@ export class ExtractionService {
 
   constructor() { }
 
-  // Implémentez la logique d'extraction OCR ou NLP ici
-  extractInformation(file: File): Observable<any> {
-    // Utilisez la logique d'extraction appropriée ici
-    // Par exemple, renvoyer un Observable avec les informations extraites
-    // Vous devrez importer 'Observable' depuis 'rxjs' et l'ajouter aux dépendances de votre projet
-    return new Observable((observer) => {
-      // Ici, vous pouvez simuler le traitement d'extraction
-      const extractedData = {
-        exampleField: 'Contenu extrait du fichier',
-        anotherField: 'Autre contenu extrait'
-      };
-
-      // Terminez l'observable en émettant les informations extraites
-      observer.next(extractedData);
-      observer.complete();
-    });
+  extractInformation(file: File): Observable<OCRResult> {
+    return from(createWorker({
+      logger: (m) => console.log(m),
+    })).pipe(
+      switchMap(worker => {
+        return worker.load()
+          .then(() => worker.loadLanguage('fra'))
+          .then(() => worker.initialize('fra'))
+          .then(() => worker.recognize(file))
+          .then(({ data: { text } }) => {
+            if (text) {
+              worker.terminate();
+              return { extractedText: text };
+            } else {
+              throw new Error('Aucun texte extrait.');
+            }
+          })
+          .catch(error => {
+            worker.terminate();
+            throw error;
+          });
+      })
+    );
   }
 }
