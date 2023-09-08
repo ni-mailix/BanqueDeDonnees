@@ -13,6 +13,7 @@ export class ExtractionService {
 
   extractInformation(file: File): Observable<OCRResult> {
     return from(createWorker({
+      //workerPath: 'chemin/vers/worker.js', // Spécifiez le chemin d'accès au fichier du worker
       logger: (m) => console.log(m),
     })).pipe(
       switchMap(worker => {

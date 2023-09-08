@@ -1,27 +1,19 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { OCRResultService } from '../services/ocr-result.service'; // Importez votre service ocrResult
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { OCRResultService } from '../services/ocr-result.service';
 
 @Component({
-selector: 'app-ocr-result',
-templateUrl: './ocr-result.component.html',
-styleUrls: ['./ocr-result.component.css']
+  selector: 'app-ocr-result',
+  templateUrl: './ocr-result.component.html',
+  styleUrls: ['./ocr-result.component.css']
 })
-export class OcrResultComponent {
+export class OcrResultComponent implements OnInit {
 
-  extractedText!: string | null;
+  @ViewChild('extractedText') extractedText!: HTMLInputElement;
 
-constructor(private ocrResultService: OCRResultService) { }
+  constructor(private ocrResultService: OCRResultService) {}
 
-  async ngOnInit(): Promise<void> {
-this.extractedText = '';
-// Récupérer les données extraites à partir du service OCRResultService
-this.extractedText = await this.ocrResultService.getExtractedInformation();
-}
-
-async onSubmit(event: Event): Promise<void> {
-event.preventDefault();
-
-// ... Votre code de gestion de soumission ici ...
-
-}
+  ngOnInit() {
+    const extractedInformation = this.ocrResultService.getExtractedInformation();
+    this.extractedText.value = extractedInformation ?? '';
+  }
 }

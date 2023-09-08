@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbCardModule } from '@nebular/theme';
 import { OCRResultService } from './services/ocr-result.service';
+import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
 
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 
@@ -40,7 +41,8 @@ import { AuthentificationService } from './services/authentification.service'; /
     FormsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbCardModule
+    NbCardModule,
+    TesseractOcrModule
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]
