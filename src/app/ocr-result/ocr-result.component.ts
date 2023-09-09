@@ -1,28 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { OCRResultService } from '../services/ocr-result.service';
-import { Subscription } from 'rxjs'; // Importer Subscription
 
 @Component({
   selector: 'app-ocr-result',
   templateUrl: './ocr-result.component.html',
   styleUrls: ['./ocr-result.component.css']
 })
-export class OcrResultComponent implements OnInit {
-  extractedTextValue: string = ''; // Définir une variable pour stocker le texte extrait
-  private extractedTextSubscription: Subscription | undefined; // Définir un abonnement
+export class OcrResultComponent implements OnInit, OnDestroy {
+  extractedTextValue: string = ''; // Variable pour stocker le texte extrait
+  private extractedTextSubscription: Subscription | undefined; // Abonnement à l'observable
 
-  constructor(private ocrResultService: OCRResultService) {}
+  constructor(private ocrResultService: OCRResultService) { }
 
   ngOnInit() {
     this.extractedTextSubscription = this.ocrResultService.getExtractedInformationObservable().subscribe(
       (extractedText: string | null) => {
         if (extractedText) {
-          console.log('Texte extrait :', extractedText);
-          this.extractedTextValue = extractedText; // Assurez-vous que votre variable extractedTextValue est correctement définie
+          // Vérifier si la valeur est une chaîne de caractères
+          if (typeof extractedText === 'string') {
+            this.extractedTextValue = extractedText;
+          } else {
+            console.error('La valeur renvoyée par la fonction de rappel n\'est pas une chaîne de caractères.');
+            this.extractedTextValue = 'Données non valides';
+          }
+        } else {
+          console.error('Aucun texte extrait.');
+          this.extractedTextValue = 'Aucun texte extrait';
         }
       },
       (error: any) => {
         console.error('Erreur lors de la récupération du texte extrait :', error);
+        this.extractedTextValue = 'Erreur lors de la récupération';
+      },
+      () => {
+        console.log('La fonction de rappel a été appelée.'); // Vérifier si la fonction de rappel est appelée
       }
     );
   }

@@ -27,20 +27,27 @@ export class UploadDocComponent {
       // Convertir le fichier en une chaîne de caractères contenant le chemin local
       const filePath: string = URL.createObjectURL(file);
 
-      // Initialiser l'objet worker
-      const worker = await createWorker();
+      try {
+        // Initialiser l'objet worker
+        const worker = await createWorker();
 
-      // Charger le moteur OCR Tesseract
-      await worker.load();
+        // Charger le moteur OCR Tesseract
+        await worker.load();
+        await worker.loadLanguage('fra');
+        await worker.initialize('fra');
 
-      // Extraire le texte de l'image
-      const extractedText = await this.tesseractService.imageToText(filePath, 'fra');
+        // Extraire le texte de l'image
+        const { data: { text } } = await worker.recognize(filePath);
 
-      // Stockez les données extraites dans le service OCRResultService
-      this.ocrResultService.storeExtractedInformation(extractedText);
+        // Stockez les données extraites dans le service OCRResultService
+        this.ocrResultService.storeExtractedInformation(text);
 
-      // Naviguer vers la page ocr-result
-      this.router.navigate(['/ocr-result']);
+        // Naviguer vers la page ocr-result
+        this.router.navigate(['/ocr-result']);
+      } catch (error) {
+        console.error('Erreur lors de l\'extraction :', error);
+        // Gérer l'erreur en conséquence, par exemple, afficher un message d'erreur à l'utilisateur.
+      }
     }
   }
 }
