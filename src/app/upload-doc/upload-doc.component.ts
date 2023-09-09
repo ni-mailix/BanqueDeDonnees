@@ -2,7 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TesseractService } from '../tesseract-ocr/services/ng-tesseract/ng-tesseract.service';
 import { OCRResultService } from '../services/ocr-result.service';
-import { createWorker } from 'tesseract.js';
+import { ImageLike, createWorker } from 'tesseract.js';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-doc',
@@ -32,7 +33,6 @@ export class UploadDocComponent {
         const worker = await createWorker();
 
         // Charger le moteur OCR Tesseract
-        await worker.load();
         await worker.loadLanguage('fra');
         await worker.initialize('fra');
 
@@ -50,4 +50,63 @@ export class UploadDocComponent {
       }
     }
   }
+
+  // Autres méthodes
+
+  public extractTextFromImage(img: string, lang: string): Observable<string> {
+    return new Observable<string>((observer) => {
+      (async () => {
+        try {
+          const worker = await createWorker();
+
+          await worker.loadLanguage(lang);
+          await worker.initialize(lang);
+
+          const { data: { text } } = await worker.recognize(img);
+
+          observer.next(text);
+          observer.complete();
+        } catch (error) {
+          observer.error(error);
+        }
+      })();
+    });
+  }
+
+  public extractTextFromPDF(file: File, lang: string): Observable<string> {
+    return new Observable<string>((observer) => {
+      (async () => {
+        try {
+          const worker = await createWorker();
+
+          await worker.loadLanguage(lang);
+          await worker.initialize(lang);
+
+          const reader = new FileReader();
+
+          reader.onload = async (event: any) => {
+            const pdfImage: ImageLike = {
+              data: new Uint8ClampedArray(event.target.result),
+              width: file.size / (8 * event.target.result.byteLength),
+              height: 1,
+              colorSpace: 'srgb'
+            };
+            const { data: { text } } = await worker.recognize(pdfImage);
+
+            observer.next(text);
+            observer.complete();
+          };
+
+          reader.onerror = (error) => {
+            observer.error(error);
+          };
+
+          reader.readAsArrayBuffer(file);
+        } catch (error) {
+          console.error('Erreur lors de l\'extraction :', error);
+          // Gérer l'erreur en conséquence, par exemple, afficher un message d'erreur à l'utilisateur.
+        }
+      }
+    )}
+  )}
 }
