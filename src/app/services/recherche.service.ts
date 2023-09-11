@@ -48,23 +48,20 @@ url:String="http://localhost:8080/";
    
     ];
     // return of(suggestion); 
-    let apiUrl = this.url+'data'; 
+    let apiUrl = this.url+'complete'; 
     // apiUrl+="?query=${recherche.semantique}&check=${recherche.check}";
     console.log(apiUrl,{params});
     return this.http.get(apiUrl,{params});
   }
 
-  getSuggest(recherche:Recherche,arraySuggest:any[]):any[]{
+  getSuggest(recherche:Recherche,arraySuggest:any[]):void{
     this.suggestion(recherche).subscribe(
       (val) => {
         // Traitez les résultats de recherche
-        arraySuggest = val;
-        
-        // arraySuggest.splice(0, arraySuggest.length, ...val);
+        // arraySuggest = val;
+        arraySuggest.splice(0, arraySuggest.length, ...val);
 
       },      
     );
-return arraySuggest;
-
   }
 }

@@ -3,7 +3,7 @@
   <form (ngSubmit)="onSubmit()">
     <input autocomplete="off" list="id-car" name="semantique" [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique" (ngModelChange)="selectChangeHandler($event)">
     <datalist id="id-car">
-      <option *ngFor="let suggestion of suggestion" [value]="suggestion.nom">{{suggestion.description}} </option>
+      <option *ngFor="let suggestion of suggestion" [value]="suggestion.nom+' '+suggestion.prenom">{{suggestion.nom}}- {{suggestion.prenom}} {{suggestion.age}}Ans {{suggestion.poste}}</option>
     </datalist>
       <div [style.visibility]="showOptions ? 'visible' : 'hidden'"  class="a">
   
@@ -35,8 +35,11 @@
   <h2>Résultats de recherche :</h2>
   <ul>
     <li *ngFor="let resultat of resultatsDeRecherche">
-      <h3>{{ resultat.nom }}</h3>
-      <p>{{ resultat.description }}</p>
+      <h3>{{ resultat.nom }}  {{resultat.prenom}} </h3>
+       {{resultat.age}}Ans 
+      <p>{{ resultat.titre }}</p>
+      <button>Consulter le profil</button>
+      <hr>
     </li>
   </ul>
 </div>
@@ -51,9 +54,5 @@
               (page)="onChangePage($event)" >
 </mat-paginator>
  </div>
- <input list="id-car" [(ngModel)]="selectedCar" (ngModelChange)="selectChangeHandler($event)">
- <datalist id="id-car">
-   <option *ngFor="let car of cars" [value]="car">{{car.make}} - {{car.model}}</option>
- </datalist>
  
- {{selectedCar}}
+ 

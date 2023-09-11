@@ -23,6 +23,7 @@ import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
 
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HttpClientModule } from '@angular/common/http';
+import { HistoriqueComponent } from './historique/historique.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     AfficherDonneesComponent,
     RechercheDonneesComponent,
     AnalyseStatComponent,
-    PagePrincipaleComponent 
+    PagePrincipaleComponent,
+    HistoriqueComponent 
   ],
   imports: [
     BrowserModule,
@@ -43,12 +45,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
     TesseractOcrModule
-23386a04173147644f179426ece6406c98cad33f
+
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]

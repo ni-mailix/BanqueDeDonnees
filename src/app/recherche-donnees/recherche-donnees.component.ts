@@ -4,6 +4,7 @@ import { Recherche } from '../models/recherche.model';
 import { Observable, of } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { HistoriqueService } from '../services/historique.service';
 
 @Component({
   selector: 'app-recherche-donnees',
@@ -30,13 +31,13 @@ export class RechercheDonneesComponent {
   showProgressBar=false;
   selectValue = '';
   suggestion:any[]=[];
-  constructor(private rechercheService: RechercheService) { }
+  constructor(private rechercheService: RechercheService,private historiqueRecherche:HistoriqueService) { }
   // time = new Observable<string>(observer => {
   //   setInterval(() => observer.next(new Date().getSeconds().toString()), 1000);
   // });
   
   onSubmit(): void {
-    
+    this.historiqueRecherche.addHistorique(this.recherche.semantique);
     this.resultatsDeRecherche.length = 0;
     this.showProgressBar=true;
     // Utilisez le service de recherche côté client pour obtenir les résultats
@@ -63,7 +64,7 @@ export class RechercheDonneesComponent {
         this.rechercheService.searchItems(this.recherche).subscribe(
           (val) => {
             // Traitez les résultats de recherche
-            this.resultatsDeRecherche = val;
+            // this.resultatsDeRecherche = val;
           },
           (error) => {
             console.error('Erreur de recherche :', error);
@@ -87,26 +88,9 @@ export class RechercheDonneesComponent {
     // this.selectedDay = event.target.value;
     this.myObservable.subscribe(
       (data)=>{
-        // alert('niova'+this.recherche.semantique);
-        //suggestion*******************
-        this.suggestion=this.rechercheService.getSuggest(this.recherche,this.resultatsDeRecherche);
-        // arraySuggest = val;
-        // alert(this.resultatsDeRecherche.length)
+     this.rechercheService.getSuggest(this.recherche,this.suggestion);
       },
     );
   }
-  cars = [{
-    make: 'Ford',
-    model: 'GTX',
-    color: 'green'
-  }, {
-    make: 'Ferarri',
-    model: 'Enzo',
-    color: 'red'
-  }, {
-    make: 'VW',
-    model: 'Amarok',
-    color: 'white'
-  }]
-  selectedCar:any;
+  
 }
