@@ -19,6 +19,7 @@ export class AuthentificationComponent {
     if (isAuthenticated) {
       this.router.navigate(['/page-principale']);
     } else {
+      alert('Échec d\'authentification')
       console.log('Échec d\'authentification');
     }
   }
