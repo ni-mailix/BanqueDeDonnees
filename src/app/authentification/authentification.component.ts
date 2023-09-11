@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from '../services/authentification.service';
 
+
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
@@ -9,8 +10,8 @@ import { AuthentificationService } from '../services/authentification.service';
 })
 export class AuthentificationComponent {
 
-  username: string = '';
-  password: string = '';
+  username: string = 'utilisateur';
+  password: string = 'motdepasse';
 
   constructor(private authService: AuthentificationService, private router: Router) { }
 

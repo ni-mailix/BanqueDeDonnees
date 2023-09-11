@@ -6,6 +6,7 @@ import { AfficherDonneesComponent } from './afficher-donnees/afficher-donnees.co
 import { RechercheDonneesComponent } from './recherche-donnees/recherche-donnees.component';
 import { AnalyseStatComponent } from './analyse-stat/analyse-stat.component';
 import { PagePrincipaleComponent } from './page-principale/page-principale.component';
+import { OcrResultComponent } from './ocr-result/ocr-result.component';
 
 // Créez une garde de route
 class AuthGuard implements CanActivate {
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'recherche-donnees', component: RechercheDonneesComponent },
   { path: 'analyse-stat', component: AnalyseStatComponent },
   { path: 'page-principale', component: PagePrincipaleComponent, canActivateChild: [AuthGuard] },
+  { path: 'ocr-result', component: OcrResultComponent },
   { path: '', redirectTo: '/authentification', pathMatch: 'full' }, // Redirection par défaut
   // Ajoutez d'autres routes ici
 ];

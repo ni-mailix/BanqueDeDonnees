@@ -16,6 +16,10 @@ import { RechercheDonneesComponent } from './recherche-donnees/recherche-donnees
 import { AnalyseStatComponent } from './analyse-stat/analyse-stat.component';
 import { PagePrincipaleComponent } from './page-principale/page-principale.component';
 import { FormsModule } from '@angular/forms';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbCardModule } from '@nebular/theme';
+import { OCRResultService } from './services/ocr-result.service';
+import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
 
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HttpClientModule } from '@angular/common/http';
@@ -40,8 +44,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatPaginatorModule,
     MatProgressBarModule
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbCardModule,
+    TesseractOcrModule
+23386a04173147644f179426ece6406c98cad33f
   ],
-  providers: [AuthentificationService], // Ajoutez AuthentificationService ici
+  providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]
 })
 export class AppModule { }
