@@ -17,9 +17,12 @@ import { FormsModule } from '@angular/forms';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbCardModule } from '@nebular/theme';
 import { OCRResultService } from './services/ocr-result.service';
-import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
+import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
+import { AuthentificationService } from './services/authentification.service';
+import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { AuthentificationService } from './services/authentification.service'; /
     AfficherDonneesComponent,
     RechercheDonneesComponent,
     AnalyseStatComponent,
-    PagePrincipaleComponent 
+    PagePrincipaleComponent,
+    PdfToImageComponent 
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { AuthentificationService } from './services/authentification.service'; /
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
-    TesseractOcrModule
+    TesseractOcrModule,
+    PdfViewerModule,
+    HttpClientModule
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]

@@ -11,8 +11,7 @@ declare module 'pdfjs-dist/types/pdf' {
   // Ajoutez d'autres déclarations de types au besoin
 }
 
-// declare module 'pdfjs-dist/build/pdf' {
-//     const pdfjs: any;
-//     export default pdfjs;
-// }
-
+declare module 'pdfjs-dist/build/pdf' {
+  const pdf: any;
+  export default pdf;
+}

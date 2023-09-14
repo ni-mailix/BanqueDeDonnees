@@ -26,12 +26,18 @@
       "dom",
       
     ],
-    "types": ["node"]
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./src/types","pdfjs-dist/build/pdf"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  
+  "include": [
+    "src/**/*.ts",  // Autres fichiers TypeScript inclus
+    "./node_modules/pdfjs-dist/pdfjs-dist.d.ts"  // Chemin vers pdfjs-dist.d.ts
+  ]
 }
