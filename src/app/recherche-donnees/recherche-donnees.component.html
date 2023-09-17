@@ -1,21 +1,58 @@
-<form (ngSubmit)="onSubmit()">
-    <input [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique">
-    <input [(ngModel)]="recherche.diplome" placeholder="Diplôme">
-    <input [(ngModel)]="recherche.universite" placeholder="Université">
-    <input [(ngModel)]="recherche.experience" placeholder="Expérience">
-    <input [(ngModel)]="recherche.langue" placeholder="Langue">
-    <!-- Ajoutez d'autres champs de recherche selon vos besoins -->
+<div class="body">
+ 
+  <form (ngSubmit)="onSubmit()">
+    <input autocomplete="off" list="id-car" name="semantique" [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique" (ngModelChange)="selectChangeHandler($event)">
+    <datalist id="id-car">
+      <option *ngFor="let suggestion of suggestion" [value]="suggestion.nom+' '+suggestion.prenom">{{suggestion.nom}}- {{suggestion.prenom}} {{suggestion.age}}Ans {{suggestion.poste}}</option>
+    </datalist>
+      <div [style.visibility]="showOptions ? 'visible' : 'hidden'"  class="a">
+  
+      <input [(ngModel)]="recherche.diplome"name="diplome"  placeholder="Diplôme">
+      <input name="universite" [(ngModel)]="recherche.universite" placeholder="Université">
+      <input name="experience"  [(ngModel)]="recherche.experience" placeholder="Expérience">
+      <input  name="langue" [(ngModel)]="recherche.langue"  placeholder="Langue">
+      <select [(ngModel)]="selectValue"> 
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+      </select>
+      <label for="visited">Déjà consulté</label>
+      <input type="checkbox" name="check" id="" name="check" [(ngModel)]="recherche.check" value="{{recherche.check}}">
+
+    </div>
+    <!-- Afficher les résultats de recherche -->
+    
+  
     <button type="submit">Rechercher</button>
   </form>
-  
-  <!-- Afficher les résultats de recherche -->
-  <div *ngIf="(resultatsDeRecherche.length > 0)">
-    <h2>Résultats de recherche :</h2>
-    <ul>
-      <li *ngFor="let resultat of resultatsDeRecherche">
-        <h3>{{ resultat.nom }}</h3>
-        <p>{{ resultat.description }}</p>
-      </li>
-    </ul>
-  </div>
-  
+  <button (click)="showOptions=!showOptions">
+    {{ showOptions ? 'Masquer les options' :  'Afficher les options'}}
+  </button>
+  <mat-progress-bar  *ngIf="showProgressBar" mode="query"></mat-progress-bar>
+
+  <!-- Time: {{ time | async }} -->
+
+<div *ngIf="(resultatsDeRecherche.length > 0)">
+  <h2>Résultats de recherche :</h2>
+  <ul>
+    <li *ngFor="let resultat of resultatsDeRecherche">
+      <h3>{{ resultat.nom }}  {{resultat.prenom}} </h3>
+       {{resultat.age}}Ans 
+      <p>{{ resultat.titre }}</p>
+      <button>Consulter le profil</button>
+      <hr>
+    </li>
+  </ul>
+</div>
+
+
+
+  <mat-paginator  *ngIf="(resultatsDeRecherche.length > 0)"
+    [length]="(resultatsDeRecherche.length)"
+              [pageSize]="10"
+              [pageSizeOptions]="[3, 10, 25, 100]"
+              aria-label="Select page"
+              (page)="onChangePage($event)" >
+</mat-paginator>
+ </div>
+ 
+ 

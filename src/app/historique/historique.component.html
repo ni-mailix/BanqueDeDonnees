@@ -1,0 +1,15 @@
+<h2>Historique</h2>
+<div>
+    <button>Vider l'historique</button>
+</div>
+<div>
+    <h3>Aujourd'hui</h3>
+    <ul>
+        <li *ngFor="let historique of historiques">
+          <tr>
+           <td [width]="500"> <p><a href="">{{ historique.historique }} </a> <i>{{ historique.heure }}</i></p></td>
+           <td> <button>Supprimer de l'historique</button></td>
+            
+        </tr></li>
+    </ul>
+</div>

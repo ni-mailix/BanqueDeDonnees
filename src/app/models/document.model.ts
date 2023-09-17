@@ -1,4 +1,4 @@
-export interface Recherche {
+export interface Document {
     semantique: string;
     diplome: string;
     universite: string;
@@ -7,4 +7,3 @@ export interface Recherche {
     check:boolean;
     // Ajoutez d'autres champs selon vos besoins
   }
-  

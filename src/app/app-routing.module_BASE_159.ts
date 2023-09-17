@@ -7,8 +7,6 @@ import { RechercheDonneesComponent } from './recherche-donnees/recherche-donnees
 import { AnalyseStatComponent } from './analyse-stat/analyse-stat.component';
 import { PagePrincipaleComponent } from './page-principale/page-principale.component';
 import { OcrResultComponent } from './ocr-result/ocr-result.component';
-import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component';
-import { HistoriqueComponent } from './historique/historique.component';
 
 // Créez une garde de route
 class AuthGuard implements CanActivate {
@@ -21,9 +19,8 @@ class AuthGuard implements CanActivate {
 
 const routes: Routes = [
   { path: 'authentification', component: AuthentificationComponent },
-  { path: 'historique', component: HistoriqueComponent },
   { path: 'upload-doc', component: UploadDocComponent },
-  { path: 'pdf-to-image', component: PdfToImageComponent },
+  { path: 'afficher-donnees', component: AfficherDonneesComponent },
   { path: 'recherche-donnees', component: RechercheDonneesComponent },
   { path: 'analyse-stat', component: AnalyseStatComponent },
   { path: 'page-principale', component: PagePrincipaleComponent, canActivateChild: [AuthGuard] },

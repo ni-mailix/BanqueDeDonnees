@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +23,13 @@ import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AuthentificationService } from './services/authentification.service';
+
 import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
+
+
+import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
+import { HistoriqueComponent } from './historique/historique.component';
+import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,9 @@ import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // 
     RechercheDonneesComponent,
     AnalyseStatComponent,
     PagePrincipaleComponent,
-    PdfToImageComponent 
+    // PdfToImageComponent,
+    // PdfViewerModule,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +52,17 @@ import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // 
     MatIconModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
     TesseractOcrModule,
     PdfViewerModule,
-    HttpClientModule
+    HttpClientModule,
+    PdfToImageAppModule
+
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent]
