@@ -19,7 +19,7 @@ import { AppComponent } from '../app.component';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [PdfToImageComponent]
 })
 export class PdfToImageAppModule { }
 platformBrowserDynamic().bootstrapModule(PdfToImageAppModule);

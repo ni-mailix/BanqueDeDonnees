@@ -19,7 +19,6 @@ export class OCRResultService {
     }
   }
   
-
   // Méthode pour récupérer les données extraites sous forme d'observable
   getExtractedInformationObservable(): Observable<string | null> {
     return this.extractedInformation.asObservable();

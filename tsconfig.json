@@ -23,8 +23,7 @@
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
-      "dom",
-      
+      "dom",      
     ],
     "types": ["node"],
     "typeRoots": ["./node_modules/@types", "./src/types","pdfjs-dist/build/pdf"]

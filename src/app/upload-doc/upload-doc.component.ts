@@ -23,23 +23,18 @@ export class UploadDocComponent {
 
     if (this.fileInput.nativeElement.files && this.fileInput.nativeElement.files.length > 0) {
       const file: File = this.fileInput.nativeElement.files[0];
-      
+
       const fileUrl = URL.createObjectURL(file);
       const fileAbsolutePath = file.webkitRelativePath;
-      console.log('fileurl ='+fileUrl);
-      console.log('fileAbsolutePath ='+fileAbsolutePath);
+      console.log('fileurl =' + fileUrl);
+      console.log('fileAbsolutePath =' + fileAbsolutePath);
 
       try {
         // Vérifier le type de fichier
         if (file.type === 'application/pdf') {
 
           try {
-            // Obtenir le nom du fichier
 
-            // Obtenir le document PDF
-            // const pdfDocument = await PDFJS.getDocument(fileName);
-
-            // Convertir le PDF en images
             const pdfImages = await this.convertPDFToImages(fileAbsolutePath);
 
             // Scanner chaque image avec Tesseract.js

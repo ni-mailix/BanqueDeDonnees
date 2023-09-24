@@ -6,24 +6,27 @@
     <mat-nav-list>
       <!-- <a mat-list-item routerLink="/authentification">Authentification</a> -->
       <!-- <ng-container > -->
-        <a mat-list-item [routerLink]="['/upload-doc']">
-          Upload
-        </a>
         <a mat-list-item [routerLink]="['/pdf-to-image']">
           Convertir PDF vers Image
         </a>
+        <a mat-list-item [routerLink]="['/upload-doc']">
+          Extraire texte
+        </a>
+        <!-- <a mat-list-item [routerLink]="['/upload-doc']">
+          Upload
+        </a> -->
         <a mat-list-item [routerLink]="['/app-ocr-result']">
-          Afficher résultat OCR
+          Résultat Extraction
         </a>
         <a mat-list-item [routerLink]="['/recherche-donnees']">
-          Recherche Données
+          Recherche des Données
         </a>
-        <a mat-list-item [routerLink]="['/historique']">
+        <!-- <a mat-list-item [routerLink]="['/historique']">
           Historique de recherche
         </a>
         <a mat-list-item [routerLink]="['/analyse-stat']">
           Analyse Statistique
-        </a>
+        </a> -->
         <button mat-button (click)="onLogout()">Déconnexion</button>
       <!-- </ng-container> -->
     </mat-nav-list>

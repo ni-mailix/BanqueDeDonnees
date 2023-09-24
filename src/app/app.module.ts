@@ -22,7 +22,7 @@ import { OCRResultService } from './services/ocr-result.service';
 import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HttpClientModule } from '@angular/common/http';
-
+import 'bootstrap';
 
 import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
 
@@ -40,7 +40,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     RechercheDonneesComponent,
     AnalyseStatComponent,
     PagePrincipaleComponent,
-    // PdfToImageComponent,
+    //  PdfToImageComponent,
     // PdfViewerModule,
     HistoriqueComponent
   ],
@@ -65,6 +65,6 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
 
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,PdfToImageComponent]
 })
 export class AppModule { }

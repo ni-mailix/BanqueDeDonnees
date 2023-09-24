@@ -114,16 +114,16 @@ export class PdfToImageComponent {
   private getCanvasToDownload(canvas: any) {
     let ctx = canvas.getContext('2d');
     ctx.scale(3, 3);
-    let image = canvas.toDataURL("image/jpeg", { quality: 100 });
-    // let image = canvas.toDataURL("image/png").replace("image/png", "image/png");
+    // let image = canvas.toDataURL("image/jpeg", { quality: 100 });
+    let image = canvas.toDataURL("image/png").replace("image/png", "image/png");
     var link = document.createElement('a');
     link.download = "my-image.png";
     link.href = image;
     link.click();
       // Display the image
-  var imageElement = document.createElement("img");
-  imageElement.src = image;
-  document.body.appendChild(imageElement);
+  // var imageElement = document.createElement("img");
+  // imageElement.src = image;
+  // document.body.appendChild(imageElement);
   }
 
   // show the previous page
