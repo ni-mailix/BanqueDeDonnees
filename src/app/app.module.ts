@@ -55,7 +55,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     HttpClientModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    NbThemeModule.forRoot({ name: 'default' }),
+    // NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
     TesseractOcrModule,

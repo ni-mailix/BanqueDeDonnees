@@ -37,6 +37,8 @@
   
   "include": [
     "src/**/*.ts",  // Autres fichiers TypeScript inclus
-    "./node_modules/pdfjs-dist/pdfjs-dist.d.ts"  // Chemin vers pdfjs-dist.d.ts
+    "./node_modules/pdfjs-dist/pdfjs-dist.d.ts",  // Chemin vers pdfjs-dist.d.ts
+    "src/pdfjs-dist.d.ts" // Include your custom type declaration file
+
   ]
 }

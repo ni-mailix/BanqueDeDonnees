@@ -32,7 +32,7 @@
     "jquery": "^3.7.1",
     "ng2-pdf-viewer": "^10.0.0",
     "pdf-parse": "^1.1.1",
-    "pdfjs-dist": "^3.10.111",
+    "pdfjs-dist": "^3.11.174",
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
     "tesseract.js": "^4.1.2",
