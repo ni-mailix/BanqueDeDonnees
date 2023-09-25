@@ -64,8 +64,6 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     PdfViewerModule,
     HttpClientModule,
     PdfToImageAppModule
- main_etu2223_mbds
-
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent,PdfToImageComponent]

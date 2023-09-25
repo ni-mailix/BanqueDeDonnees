@@ -8,7 +8,7 @@ import { HistoriqueService } from '../services/historique.service';
 })
 export class HistoriqueComponent implements OnInit{
 
-  constructor(private historiqueService: HistoriqueService) {
+  constructor( public historiqueService: HistoriqueService) {
   }
   historiques:any[]=[];
 
@@ -16,7 +16,9 @@ export class HistoriqueComponent implements OnInit{
     this.historiqueService.getHistoriques().subscribe(
       (val) => {
         // Traitez les résultats de recherche
-        this.historiques=val;      
+       
+        this.historiques=val;   
+        // alert(val.length);   
       });
   }
 }

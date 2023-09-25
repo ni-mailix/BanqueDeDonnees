@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import * as _html2canvas from "html2canvas";
 import { HttpClient } from '@angular/common/http';
+// import { pdf2image } from 'pdf2image';
+
 import Cropper from 'cropperjs';
 declare var $: any
 const html2canvas: any = _html2canvas;
@@ -152,4 +154,32 @@ export class PdfToImageComponent {
     this.cropper.clear();
     this.cropper.destroy();
   }
+
+
+
+
+  // async convertPdfToImages(pdfFilePath: string, outputDir: string): Promise<string[]> {
+  //   try {
+  //     const options = {
+  //       density: 300, // DPI (dots per inch)
+  //       outputType: 'png', // Image format
+  //       outputDir,
+  //     };
+
+  //     const imagePaths = await pdf2image.convert(pdfFilePath, options);
+  //     return imagePaths;
+  //   } catch (error) {
+  //     console.error('PDF to image conversion failed:', error);
+  //     throw error;
+  //   }
+  // }
+
+  // async convertPdf() {
+  //   try {
+  //     const imagePaths = await this.convertPdfToImages('path/to/your.pdf', 'output-directory');
+  //     console.log('Image paths:', imagePaths);
+  //   } catch (error) {
+  //     console.error('PDF to image conversion failed:', error);
+  //   }
+  // }
 }

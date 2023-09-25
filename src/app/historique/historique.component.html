@@ -7,9 +7,16 @@
     <ul>
         <li *ngFor="let historique of historiques">
           <tr>
-           <td [width]="500"> <p><a href="">{{ historique.query }} </a> <i>{{ historique.heure }}</i></p></td>
+           <td [width]="500"> <p><a href="">{{ historique.query }} </a> <i>{{ this.historiqueService.formatDate(historique.heure)  }}</i></p></td>
            <td> <button>Supprimer de l'historique</button></td>
             
         </tr></li>
     </ul>
+</div>
+<div>
+    <select name="" id="">
+        <option value="">Ce mois-ci</option>
+        <option value="">Il y a 3 mois</option>
+        <option value="">Il y a une année</option>
+    </select>
 </div>
