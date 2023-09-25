@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { HistoriqueService } from '../services/historique.service';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-recherche-donnees',
@@ -19,10 +20,10 @@ export class RechercheDonneesComponent {
     universite: '',
     experience: '',
     langue: '',
-    check:false
-    // Initialisez d'autres champs selon vos besoins
+    check:false,
+    page:0,
+    size:2,
   };
-  // recherche$ = this.recherche.asObservable();
   myObservable: Observable<Recherche>=of(this.recherche);
 
   showOptions:boolean=false;
@@ -39,51 +40,57 @@ export class RechercheDonneesComponent {
   onSubmit(): void {
     this.historiqueRecherche.addHistorique(this.recherche.semantique);
     this.resultatsDeRecherche.length = 0;
+    this.recherche.page=0;
     this.showProgressBar=true;
     // Utilisez le service de recherche côté client pour obtenir les résultats
     this.rechercheService.searchItems(this.recherche).subscribe(
       (val) => {
-        // Traitez les résultats de recherche
         this.resultatsDeRecherche = val;
       },
       (error) => {
         console.error('Erreur de recherche :', error);
       },
       () => {
-        // Fonction de rappel une fois l'observable terminé (complete)
         setTimeout(() => {
           this.showProgressBar=false;}
           ,1000);
       }
-      
     );
   }
+  
   onChangePage(event:PageEvent) :void{
+    const curPage=event.pageIndex;
+    const prev=event.previousPageIndex?event.previousPageIndex:0;
+    if(curPage>prev){
+    this.recherche.page++;
+    }
+    else if(curPage<prev){
+    this.recherche.page--;
+    }  
+    else
+    {
+      this.recherche.size=event.pageSize;
+    }  
     this.myObservable.subscribe(
       (data)=>{
         this.rechercheService.searchItems(this.recherche).subscribe(
           (val) => {
-            // Traitez les résultats de recherche
-            // this.resultatsDeRecherche = val;
+             this.resultatsDeRecherche = val;
           },
           (error) => {
             console.error('Erreur de recherche :', error);
             this.showProgressBar=false;
           },
           () => {
-            // Fonction de rappel une fois l'observable terminé (complete)
-            setTimeout(() => {
+           setTimeout(() => {
               this.showProgressBar=false;}
               ,1000);
           }
-          
         );
       },
     );
-    // alert(event.previousPageIndex) ;
   }
   
-
   selectChangeHandler (event: any) {
     // this.selectedDay = event.target.value;
     this.myObservable.subscribe(

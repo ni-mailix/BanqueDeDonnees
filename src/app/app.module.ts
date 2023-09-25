@@ -20,7 +20,6 @@ import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbCardModule } from '@nebular/theme';
 import { OCRResultService } from './services/ocr-result.service';
 import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
-
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HttpClientModule } from '@angular/common/http';
 import { HistoriqueComponent } from './historique/historique.component';
@@ -29,7 +28,7 @@ import { HistoriqueComponent } from './historique/historique.component';
     AppComponent,
     AuthentificationComponent,
     UploadDocComponent,
-    AfficherDonneesComponent,
+    AfficherDonneesComponent, 
     RechercheDonneesComponent,
     AnalyseStatComponent,
     PagePrincipaleComponent,
@@ -38,7 +37,7 @@ import { HistoriqueComponent } from './historique/historique.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
+    MatSidenavModule,   
     MatListModule,
     MatIconModule,
     AppRoutingModule,
@@ -46,10 +45,10 @@ import { HistoriqueComponent } from './historique/historique.component';
     HttpClientModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
-    TesseractOcrModule
+    TesseractOcrModule,
+    // NbThemeModule.forRoot({ name: 'default' }),
 
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
