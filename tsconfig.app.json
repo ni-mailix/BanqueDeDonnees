@@ -4,12 +4,14 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "target": "ES5",
-    "types": ["node"]
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./src/types","pdfjs-dist/build/pdf"]
   },
   "files": [
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "./node_modules/pdfjs-dist/pdfjs-dist.d.ts"  
   ]
 }

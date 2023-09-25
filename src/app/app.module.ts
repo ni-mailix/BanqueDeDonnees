@@ -19,10 +19,19 @@ import { FormsModule } from '@angular/forms';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbCardModule } from '@nebular/theme';
 import { OCRResultService } from './services/ocr-result.service';
-import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module'
-import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
+import { TesseractOcrModule } from './tesseract-ocr/tesseract-ocr.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HttpClientModule } from '@angular/common/http';
+import 'bootstrap';
+
+import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
+
+
+
+import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HistoriqueComponent } from './historique/historique.component';
+import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +41,9 @@ import { HistoriqueComponent } from './historique/historique.component';
     RechercheDonneesComponent,
     AnalyseStatComponent,
     PagePrincipaleComponent,
-    HistoriqueComponent 
+    //  PdfToImageComponent,
+    // PdfViewerModule,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,
@@ -45,13 +56,18 @@ import { HistoriqueComponent } from './historique/historique.component';
     HttpClientModule,
     MatPaginatorModule,
     MatProgressBarModule,
+
+    // NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
     TesseractOcrModule,
-    // NbThemeModule.forRoot({ name: 'default' }),
+    PdfViewerModule,
+    HttpClientModule,
+    PdfToImageAppModule
+ main_etu2223_mbds
 
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,PdfToImageComponent]
 })
 export class AppModule { }

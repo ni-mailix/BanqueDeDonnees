@@ -1,34 +1,36 @@
-
- <!-- Colonne de gauche avec le sidenav -->
- <mat-drawer-container  class="full-height" >
-  <mat-drawer  mode="side" [opened]="isAuthenticated" disableFullscreen="true">
-    <p>app.component.ts -- colonne gauche</p>
-    <mat-nav-list>
+<!-- Colonne de gauche avec le sidenav -->
+<mat-drawer-container class="full-height">
+  <mat-drawer mode="side" [opened]="isAuthenticated" disableFullscreen="true"
+    style="background-color: rgb(24, 54, 95);color: aliceblue;">
+    <mat-nav-list class="h1" style="color: aliceblue;">
       <!-- <a mat-list-item routerLink="/authentification">Authentification</a> -->
       <!-- <ng-container > -->
-        <a mat-list-item [routerLink]="['/upload-doc']">
+      <a mat-list-item [routerLink]="['/pdf-to-image']">
+        <p style="color: aliceblue;">Convertir PDF vers Image</p>
+      </a>
+      <a mat-list-item [routerLink]="['/upload-doc']">
+        <p style="color: aliceblue;">Extraire texte</p>
+      </a>
+      <!-- <a mat-list-item [routerLink]="['/upload-doc']">
           Upload
-        </a>
-        <a mat-list-item [routerLink]="['/afficher-donnees']">
-          Afficher Données
-        </a>
-        <a mat-list-item [routerLink]="['/app-ocr-result']">
-          Afficher résultat OCR
-        </a>
-        <a mat-list-item [routerLink]="['/recherche-donnees']">
-          Recherche Données
-        </a>
-        <a mat-list-item [routerLink]="['/historique']">
+        </a> -->
+      <a mat-list-item [routerLink]="['/app-ocr-result']">
+        <p style="color: aliceblue;">Résultat Extraction</p>
+      </a>
+      <a mat-list-item [routerLink]="['/recherche-donnees']">
+        <p style="color: aliceblue;">Recherche des Données</p>
+      </a>
+      <!-- <a mat-list-item [routerLink]="['/historique']">
           Historique de recherche
         </a>
         <a mat-list-item [routerLink]="['/analyse-stat']">
           Analyse Statistique
-        </a>
-        <button mat-button (click)="onLogout()">Déconnexion</button>
+        </a> -->
+      <button mat-button (click)="onLogout()">Déconnexion</button>
       <!-- </ng-container> -->
     </mat-nav-list>
   </mat-drawer>
-  <mat-drawer-content>              
-    <app-page-principale><p>app.component.ts -- colonne droite</p></app-page-principale>
+  <mat-drawer-content style="background-color: rgb(178, 197, 231);">
+    <app-page-principale></app-page-principale>
   </mat-drawer-content>
 </mat-drawer-container>

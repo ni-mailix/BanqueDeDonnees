@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { TesseractService } from '../tesseract-ocr/services/ng-tesseract/ng-tesseract.service';
 import { OCRResultService } from '../services/ocr-result.service';
-import { ImageLike, createWorker } from 'tesseract.js';
-import { Observable } from 'rxjs';
+import { createWorker } from 'tesseract.js';
+import PDFJS from 'pdfjs-dist/build/pdf';
+// import * as PDFJS from 'pdfjs-dist/build/pdf';
 
 @Component({
   selector: 'app-upload-doc',
@@ -14,10 +14,9 @@ export class UploadDocComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
-    private tesseractService: TesseractService,
     private router: Router,
     private ocrResultService: OCRResultService
-  ) {}
+  ) { }
 
   async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
@@ -25,25 +24,51 @@ export class UploadDocComponent {
     if (this.fileInput.nativeElement.files && this.fileInput.nativeElement.files.length > 0) {
       const file: File = this.fileInput.nativeElement.files[0];
 
-      // Convertir le fichier en une chaîne de caractères contenant le chemin local
-      const filePath: string = URL.createObjectURL(file);
+      const fileUrl = URL.createObjectURL(file);
+      const fileAbsolutePath = file.webkitRelativePath;
+      console.log('fileurl =' + fileUrl);
+      console.log('fileAbsolutePath =' + fileAbsolutePath);
 
       try {
-        // Initialiser l'objet worker
-        const worker = await createWorker();
+        // Vérifier le type de fichier
+        if (file.type === 'application/pdf') {
 
-        // Charger le moteur OCR Tesseract
-        await worker.loadLanguage('fra');
-        await worker.initialize('fra');
+          try {
 
-        // Extraire le texte de l'image
-        const { data: { text } } = await worker.recognize(filePath);
+            const pdfImages = await this.convertPDFToImages(fileAbsolutePath);
 
-        // Stockez les données extraites dans le service OCRResultService
-        this.ocrResultService.storeExtractedInformation(text);
+            // Scanner chaque image avec Tesseract.js
+            const scannedTexts = await this.scanImagesWithTesseract(pdfImages, 'fra');
 
-        // Naviguer vers la page ocr-result
-        this.router.navigate(['/ocr-result']);
+            // Concaténer les résultats de chaque image
+            const combinedText = scannedTexts.join(' ');
+
+            // Stockez les données extraites dans le service OCRResultService
+            this.ocrResultService.storeExtractedInformation(combinedText);
+
+            // Naviguer vers la page ocr-result
+            this.router.navigate(['/ocr-result']);
+
+            URL.revokeObjectURL(fileUrl);
+
+          } catch (error) {
+            console.error('Erreur extraction pdf', error);
+          }
+
+        } else if (file.type.startsWith('image/')) {
+          // Extraire le texte de l'image en utilisant Tesseract.js
+          const imageText = await this.extractTextFromImage(file, 'fra'); // Remplacez 'fra' par la langue souhaitée
+
+          // Stockez les données extraites dans le service OCRResultService
+          this.ocrResultService.storeExtractedInformation(imageText);
+
+          // Naviguer vers la page ocr-result
+          this.router.navigate(['/ocr-result']);
+        } else {
+          // Gérer d'autres types de fichiers si nécessaire
+          console.error('Type de fichier non pris en charge :', file.type);
+          return;
+        }
       } catch (error) {
         console.error('Erreur lors de l\'extraction :', error);
         // Gérer l'erreur en conséquence, par exemple, afficher un message d'erreur à l'utilisateur.
@@ -51,62 +76,52 @@ export class UploadDocComponent {
     }
   }
 
-  // Autres méthodes
+  async convertPDFToImages(file: string) {
+    const pdfDoc = await PDFJS.getDocument(file).promise;
+    const numPages = pdfDoc.numPages;
+    const images: Uint8Array[] = [];
 
-  public extractTextFromImage(img: string, lang: string): Observable<string> {
-    return new Observable<string>((observer) => {
-      (async () => {
-        try {
-          const worker = await createWorker();
+    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+      const page = await pdfDoc.getPage(pageNum);
+      const image = await page.render({ format: 'jpeg' }).then((data: { data: Uint8Array }) => data.data);
+      images.push(image);
+    }
 
-          await worker.loadLanguage(lang);
-          await worker.initialize(lang);
-
-          const { data: { text } } = await worker.recognize(img);
-
-          observer.next(text);
-          observer.complete();
-        } catch (error) {
-          observer.error(error);
-        }
-      })();
-    });
+    return images;
   }
 
-  public extractTextFromPDF(file: File, lang: string): Observable<string> {
-    return new Observable<string>((observer) => {
-      (async () => {
-        try {
-          const worker = await createWorker();
+  async scanImagesWithTesseract(images: Uint8Array[], lang: string): Promise<string[]> {
+    const scannedTexts: string[] = [];
 
-          await worker.loadLanguage(lang);
-          await worker.initialize(lang);
+    for (const image of images) {
+      const worker = await createWorker();
+      await worker.load();
+      await worker.loadLanguage(lang);
+      await worker.initialize(lang);
 
-          const reader = new FileReader();
+      // Utiliser Buffer pour créer une instance de Buffer à partir de Uint8Array
+      const bufferImage = Buffer.from(image);
 
-          reader.onload = async (event: any) => {
-            const pdfImage: ImageLike = {
-              data: new Uint8ClampedArray(event.target.result),
-              width: file.size / (8 * event.target.result.byteLength),
-              height: 1,
-              colorSpace: 'srgb'
-            };
-            const { data: { text } } = await worker.recognize(pdfImage);
+      const { data: { text } } = await worker.recognize(bufferImage);
+      scannedTexts.push(text);
 
-            observer.next(text);
-            observer.complete();
-          };
+      await worker.terminate();
+    }
 
-          reader.onerror = (error) => {
-            observer.error(error);
-          };
+    return scannedTexts;
+  }
 
-          reader.readAsArrayBuffer(file);
-        } catch (error) {
-          console.error('Erreur lors de l\'extraction :', error);
-          // Gérer l'erreur en conséquence, par exemple, afficher un message d'erreur à l'utilisateur.
-        }
-      }
-    )}
-  )}
+  async extractTextFromImage(file: File, lang: string): Promise<string> {
+    const worker = await createWorker();
+
+    await worker.loadLanguage(lang);
+    await worker.initialize(lang);
+
+    // Extraire le texte de l'image
+    const { data: { text } } = await worker.recognize(URL.createObjectURL(file));
+
+    await worker.terminate();
+
+    return text;
+  }
 }
