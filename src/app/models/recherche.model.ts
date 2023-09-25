@@ -5,6 +5,8 @@ export interface Recherche {
     experience: string;
     langue: string;
     check:boolean;
+    size:number;
+    page:number;
     // Ajoutez d'autres champs selon vos besoins
   }
   

@@ -27,6 +27,7 @@ import 'bootstrap';
 import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
 
 
+
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HistoriqueComponent } from './historique/historique.component';
 import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
@@ -36,7 +37,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     AppComponent,
     AuthentificationComponent,
     UploadDocComponent,
-    AfficherDonneesComponent,
+    AfficherDonneesComponent, 
     RechercheDonneesComponent,
     AnalyseStatComponent,
     PagePrincipaleComponent,
@@ -47,7 +48,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
+    MatSidenavModule,   
     MatListModule,
     MatIconModule,
     AppRoutingModule,
@@ -55,6 +56,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     HttpClientModule,
     MatPaginatorModule,
     MatProgressBarModule,
+
     // NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbCardModule,
@@ -62,6 +64,7 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     PdfViewerModule,
     HttpClientModule,
     PdfToImageAppModule
+ main_etu2223_mbds
 
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici

@@ -1,7 +1,7 @@
 <div class="form-section">
     <h2>Upload de Documents</h2>
     <form (ngSubmit)="onSubmit($event)">
-      <input type="file" accept=".pdf" #fileInput>
+      <input type="file" accept=".*" required #fileInput>
       <button type="submit">Uploader</button>
     </form>
   </div>

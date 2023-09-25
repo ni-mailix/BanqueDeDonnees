@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable,of } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoriqueService {
+  url:string="http://localhost:8080/historique";
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
    hist=[
     {historique:"Rasitraka",heure:"12:45:00"},
     {historique:"Licence",heure:"12:00:00"},
@@ -15,8 +17,8 @@ export class HistoriqueService {
   ];
   getHistoriques(): Observable<any>
   {
-   
-    return of(this.hist);
+    return this.http.get(this.url);
+    // return of(this.hist);
   }
 addHistorique(histo:any):void
 {
