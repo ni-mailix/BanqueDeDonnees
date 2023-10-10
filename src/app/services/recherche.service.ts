@@ -9,7 +9,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class RechercheService {
 
   constructor(private http: HttpClient) { }
-url:String="http://localhost:8080/";
+url:String="http://127.0.0.1:8080/";
   
  formatDate(date: Date): string {
   const year = date.getFullYear();

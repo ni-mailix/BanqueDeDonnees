@@ -15,10 +15,7 @@ export class HistoriqueComponent implements OnInit{
   ngOnInit(): void {
     this.historiqueService.getHistoriques().subscribe(
       (val) => {
-        // Traitez les résultats de recherche
-       
         this.historiques=val;   
-        // alert(val.length);   
       });
   }
 }

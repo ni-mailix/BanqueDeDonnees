@@ -9,15 +9,19 @@
       <!-- <a mat-list-item [routerLink]="['/pdf-to-image']">
         <p style="color: aliceblue;">Convertir PDF vers Image</p>
       </a> -->
+      <a mat-list-item [routerLink]="['/dashboard']">
+        <p style="color: aliceblue;">Tableau de bord</p>
+      </a>
+
       <a mat-list-item [routerLink]="['/upload-doc']">
         <p style="color: aliceblue;">Extraire texte</p>
       </a>
       <!-- <a mat-list-item [routerLink]="['/upload-doc']">
           Upload
         </a> -->
-      <a mat-list-item [routerLink]="['/app-ocr-result']">
+      <!-- <a mat-list-item [routerLink]="['/app-ocr-result']">
         <p style="color: aliceblue;">Résultat Extraction</p>
-      </a>
+      </a> -->
       <a mat-list-item [routerLink]="['/recherche-donnees']">
         <p style="color: aliceblue;">Recherche des Données</p>
       </a>
@@ -34,9 +38,9 @@
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content  style="background-color: rgb(178, 197, 231);" >
-    <div *ngIf="isAuthenticated">
+    <!-- <div *ngIf="isAuthenticated">
       <h1 style="padding: 50px; margin-left: 25%; font-size: xx-large;">BANKY FOIBEN'I MADAGASIKARA</h1>
-    </div>
+    </div> -->
     <app-page-principale></app-page-principale>
   </mat-drawer-content>
 </mat-drawer-container>

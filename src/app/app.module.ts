@@ -26,11 +26,13 @@ import 'bootstrap';
 
 import { PdfToImageComponent } from './pdf-to-image/pdf-to-image.component'; // Assurez-vous d'importer correctement le chemin
 
+import { NgChartsModule } from 'ng2-charts';
 
 
 import { AuthentificationService } from './services/authentification.service'; // Assurez-vous d'importer correctement le chemin
 import { HistoriqueComponent } from './historique/historique.component';
 import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     PagePrincipaleComponent,
     //  PdfToImageComponent,
     // PdfViewerModule,
-    HistoriqueComponent
+    HistoriqueComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,9 @@ import { PdfToImageAppModule } from './pdf-to-image/pdf-to-image.module';
     TesseractOcrModule,
     PdfViewerModule,
     HttpClientModule,
-    PdfToImageAppModule
+    PdfToImageAppModule,
+    NgChartsModule
+    
   ],
   providers: [AuthentificationService, OCRResultService,], // Ajoutez AuthentificationService ici
   bootstrap: [AppComponent,PdfToImageComponent]

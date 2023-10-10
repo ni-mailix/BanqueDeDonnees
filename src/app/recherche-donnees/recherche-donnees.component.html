@@ -45,8 +45,8 @@ Transformation en composant child
 <div *ngIf="(resultatsDeRecherche.length > 0)">
 <mat-paginator  
     [length]="100"
-              [pageSize]="1"
-              [pageSizeOptions]="[1, 10, 25, 100]"
+              [pageSize]="2"
+              [pageSizeOptions]="[2, 10, 25, 100]"
               aria-label="Select page"
               (page)="onChangePage($event)"  >
 </mat-paginator></div>

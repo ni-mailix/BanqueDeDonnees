@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HistoriqueService {
-  url:string="http://localhost:8080/hist";
+  url:string="http://127.0.0.1:8080/hist";
 
   constructor(private http: HttpClient) { }
    hist=[
