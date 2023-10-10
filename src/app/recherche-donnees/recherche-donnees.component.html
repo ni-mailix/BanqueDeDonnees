@@ -1,5 +1,6 @@
 <div class="body form-section">
- 
+ <!-- <a  [routerLink]="['/historique']">Historique</a> -->
+
   <form (ngSubmit)="onSubmit()">
     <input autocomplete="off" list="id-car" name="semantique" [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique" (ngModelChange)="selectChangeHandler($event)">
     <datalist id="id-car">
@@ -30,8 +31,10 @@
       <h3>{{ resultat.nom }}  {{resultat.prenom}} </h3>
        {{resultat.age}}Ans 
       <p>{{ resultat.titre }}</p>
+      <div *ngIf="(resultat.adresse)"><strong>Adresse:</strong>{{ resultat.adresse }} </div>
+      <!-- <div *ngIf="(resultat.langues)"><strong>Langues:</strong>{{ resultat.langues }} </div> -->
       <div *ngIf="(resultat.competences)"><strong>Competences:</strong>{{ resultat.competences }} </div>
-      <button>Consulter le profil</button>
+      <!-- <button>Consulter le profil</button> -->
       <hr>
     </li>
   </ul>
@@ -39,14 +42,14 @@
 <!-- Emision evenement de pagination
 Transformation en composant child
 -->
-
+<div *ngIf="(resultatsDeRecherche.length > 0)">
 <mat-paginator  
     [length]="100"
-              [pageSize]="1"
-              [pageSizeOptions]="[1, 10, 25, 100]"
+              [pageSize]="2"
+              [pageSizeOptions]="[2, 10, 25, 100]"
               aria-label="Select page"
               (page)="onChangePage($event)"  >
-</mat-paginator>
+</mat-paginator></div>
  </div>
  
  

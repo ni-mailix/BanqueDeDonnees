@@ -8,15 +8,14 @@ import { HistoriqueService } from '../services/historique.service';
 })
 export class HistoriqueComponent implements OnInit{
 
-  constructor(private historiqueService: HistoriqueService) {
+  constructor( public historiqueService: HistoriqueService) {
   }
   historiques:any[]=[];
 
   ngOnInit(): void {
     this.historiqueService.getHistoriques().subscribe(
       (val) => {
-        // Traitez les résultats de recherche
-        this.historiques=val;      
+        this.historiques=val;   
       });
   }
 }
