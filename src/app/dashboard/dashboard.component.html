@@ -1,3 +1,117 @@
+<div class="card--container row">
+    <h3 class="main--title">Statistiques <mat-icon> bar_chart</mat-icon></h3>
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-red">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Répartition par département
+                    </span>
+                    <span class="amount-value"><canvas class="col md-6" baseChart
+                        [labels]="doughnutChartLabels"
+                        [datasets]="doughnutChartDatasets"
+                        [options]="doughnutChartOptions"
+                        [legend]="true"
+                        [type]="'doughnut'">
+                </canvas></span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-red">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Répartition par département
+                    </span>
+                    <span class="amount-value"><canvas class="col md-6" baseChart
+                        [labels]="doughnutChartLabels"
+                        [datasets]="doughnutChartDatasets"
+                        [options]="doughnutChartOptions"
+                        [legend]="true"
+                        [type]="'doughnut'">
+                </canvas></span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card ">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Répartition par département
+                    </span>
+                    <span class="amount-value"><canvas baseChart
+                        [type]="'pie'"
+                        [datasets]="pieChartDatasets"
+                        [labels]="pieChartLabels"
+                        [options]="pieChartOptions"
+                        [plugins]="pieChartPlugins"
+                        [legend]="pieChartLegend">
+                      </canvas></span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="card--container row">
+    <h3 class="main--title">Monitoring</h3>
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-red">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Utilisation de la mémoire RAM <mat-icon>memory</mat-icon>
+
+                    </span>
+                    <span class="amount-value">{{stats.heap_memory}}%</span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-red">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Connectés actuellement <mat-icon>supervisor_account</mat-icon>
+
+                    </span>
+                    <span class="amount-value">{{stats.current_connected}}</span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+   
+
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-red">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Connectés récemment        <mat-icon>supervisor_account</mat-icon>
+
+                   </span>
+                    <span class="amount-value">{{stats.latest_connected}} </span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
+</div>
+
+   
 <div>
 <div class="row">
     <div class="col md-6">
@@ -10,7 +124,7 @@
 
 <div class="row">
     <div class="col md-6">
-        <h1> Temps de réponse moyen</h1>
+        <h1> Temps de réponse moyen<mat-icon> bar_chart</mat-icon></h1>
     </div>
     <!-- <div class="col md-6">
         
@@ -18,24 +132,8 @@
 </div>
 <!-- <div class="row"> -->
    <h1> Repartition des profils par Direction</h1>
-<canvas class="col md-6" baseChart
-        [labels]="doughnutChartLabels"
-        [datasets]="doughnutChartDatasets"
-        [options]="doughnutChartOptions"
-        [legend]="true"
-        [type]="'doughnut'">
-</canvas>
 
-<canvas class="col md-6 " baseChart
-  [type]="'pie'"
-  [datasets]="pieChartDatasets"
-  [labels]="pieChartLabels"
-  [options]="pieChartOptions"
-  [plugins]="pieChartPlugins"
-  [legend]="pieChartLegend">
-</canvas>
 
-<h1> JAVA VIRTUAL MACHINE HEAP MEMORY PERCENTAGE:{{stats.heap_memory}}%</h1>
-<h1> Connectés actuellement:{{stats.current_connected}}</h1>
-<h1> Connectés récemment:{{stats.latest_connected}}</h1>
+
 </div>
+                

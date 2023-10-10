@@ -1,0 +1,64 @@
+.card--container{
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    color: black;
+    margin-bottom: 5em;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  
+}
+.main--title{
+    color: rgba(113, 99,186, 255);
+    padding-bottom: 10px;
+    font-size:  3em;
+}
+
+.payment--card{
+    background: rgb(229, 223, 223);
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 420px;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+
+.payment--card:hover{
+    transform: translateY(-5px);
+}
+.card--header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.amount{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-size :1.5em;;
+    font-weight: 400;
+}
+.amount--value{
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.light-red{
+    background: rgb(254, 226, 254);
+}
+.light-purple{
+    background: rgb(254, 226, 254);
+}
+.light-blue{
+    background: rgb(236, 236, 254);
+}
