@@ -1,0 +1,22 @@
+.main--title{
+    color: rgba(113, 99,186, 255);
+    padding-bottom: 10px;
+    font-size:  3em;
+}
+.btn {
+    /* background-color: DodgerBlue; */
+   color: #dc3545;
+   border-color: #dc3545;
+    /* width: ; */
+    /* color: white; */
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    color: white;
+    font-weight: bold;
+    background-color:#dc3545;;
+  }

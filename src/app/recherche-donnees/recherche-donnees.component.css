@@ -1,8 +1,154 @@
-.body{
-    /* background-color: red; */
+/* .body{
+    /* background-color: red; 
+/* } */
+*{
+    color: black;
 }
-
 .form-section{
     padding: 70px 90px 70px 90px;
     align-content : right;
+  } 
+
+  .attendance-list{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  }
+
+  .table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size:1.em;
+    min-width: 100%;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+  }
+  table thead tr{
+    color: #fff;
+    background: #330e87;
+    text-align: left;
+    font-weight: bold;
+  }
+  .table th{
+    font-size: 1.5em;
+  },
+  .table td{
+    padding: 12px 15px;
+  }
+  .table tbody tr{
+    border-bottom: 1px solid #ddd;
+  }
+  .table tbody tr:nth-of-type(odd){
+    background: #f3f3f3;
+  }
+  .table tbody tr.active{
+    font-weight: bold;
+    color: #4227da;
+  }
+  .table tbody tr:last-of-type{
+    border-bottom: 2px solid #4AD489;
+  }
+  .table button{
+    padding: 6px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid rgb(24, 54, 95);
+  }
+  .table button:hover{
+    background: rgb(24, 54, 95);
+    color: #fff;
+    transition: 0.5rem;
+  }
+
+  .btn {
+    /* background-color: DodgerBlue; */
+    background-color:  rgb(24, 54, 95);
+    /* width: ; */
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }
+
+
+/* 
+*********************************************
+*/
+
+
+  ::selection{
+    color: #fff;
+    background: #664AFF;
+  }
+  .wrapper{
+    max-width: 450px;
+    /* margin: 150px auto; */
+  }
+  .wrapper .search-input{
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+  }
+  .search-input input{
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+  }
+  .search-input.active input{
+    border-radius: 5px 5px 0 0;
+  }
+  .search-input .autocom-box{
+    padding: 0;
+    opacity: 1;
+    /* pointer-events: none; */
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .search-input.active .autocom-box{
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .autocom-box li{
+    list-style: none;
+    padding: 8px 12px;
+    /* display: none; */
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+  }
+  .search-input.active .autocom-box li{
+    display: block;
+  }
+  .autocom-box li:hover{
+    background: #efefef;
+  }
+  .search-input .icon{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #644bff;
+    cursor: pointer;
   }

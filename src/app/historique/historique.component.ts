@@ -18,4 +18,9 @@ export class HistoriqueComponent implements OnInit{
         this.historiques=val;   
       });
   }
+  clickMethod(name: string) {
+    if(confirm("Vous êtes sur le point de vider votre historique ")) {
+      // console.log("Implement delete functionality here");
+    }
+  }
 }

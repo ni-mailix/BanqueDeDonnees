@@ -1,11 +1,16 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="card--container row">
-    <h3 class="main--title">Statistiques <mat-icon> bar_chart</mat-icon></h3>
+    <h3 class="main--title">Statistiques <mat-icon style="margin-top: 20px;">bar_chart</mat-icon>    <button class="btn" (click)="clickMethod('Statistique')">
+        Exporter PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+    </h3>
+
     <div class="card--wraper col-md-4" >
-        <div class="payment--card light-red">
+        <div class="payment--card light-blue">
             <div class="card--header ">
                 <div class="amount">
                     <span class="title">
-                        Répartition par département
+                        Effectif des départements
                     </span>
                     <span class="amount-value"><canvas class="col md-6" baseChart
                         [labels]="doughnutChartLabels"
@@ -21,16 +26,16 @@
     </div>
 
     <div class="card--wraper col-md-4" >
-        <div class="payment--card light-red">
+        <div class="payment--card light-blue">
             <div class="card--header ">
                 <div class="amount">
                     <span class="title">
-                        Répartition par département
+                        Les profils les plus consultés
                     </span>
                     <span class="amount-value"><canvas class="col md-6" baseChart
                         [labels]="doughnutChartLabels"
-                        [datasets]="doughnutChartDatasets"
-                        [options]="doughnutChartOptions"
+                        [datasets]="doughnutChartDatasets1"
+                        [options]="doughnutChartOptions1"
                         [legend]="true"
                         [type]="'doughnut'">
                 </canvas></span>
@@ -41,11 +46,11 @@
     </div>
 
     <div class="card--wraper col-md-4" >
-        <div class="payment--card ">
+        <div class="payment--card light-blue">
             <div class="card--header ">
                 <div class="amount">
                     <span class="title">
-                        Répartition par département
+                        Les profils ajoutés récemment
                     </span>
                     <span class="amount-value"><canvas baseChart
                         [type]="'pie'"
@@ -60,10 +65,39 @@
             </div>
         </div>
     </div>
-
+    <!-- <input type="text" placeholder="Type to search.." name="te" [(ngModel)]="te" value="{{te}}">
+   {{te}} -->
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-white">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Courbe des recherches <select name="" id="">
+                            <option value="">2023</option>
+                            <option value="">2022</option>
+                            <option value="">2021</option>
+                        </select>
+                    </span>
+                    <div style="display: block;">
+                        <canvas baseChart width="400" height="300"
+                          [type]="'line'"
+                          [data]="lineChartData"
+                          [options]="lineChartOptions"
+                          [legend]="lineChartLegend">
+                        </canvas>
+                      </div>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
 </div>
 <div class="card--container row">
-    <h3 class="main--title">Monitoring</h3>
+    <h3 class="main--title">Monitoring  <mat-icon> multiline_chart</mat-icon> 
+        <!-- <button class="btn"><i class="fa fa-download"></i> Telecharger</button> -->
+        <button class="btn" (click)="clickMethod('Monitoring')">
+            Exporter PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+    </h3>
     <div class="card--wraper col-md-4" >
         <div class="payment--card light-red">
             <div class="card--header ">
@@ -109,31 +143,21 @@
             </div>
         </div>
     </div>
+    <div class="card--wraper col-md-4" >
+        <div class="payment--card light-blue">
+            <div class="card--header ">
+                <div class="amount">
+                    <span class="title">
+                        Temps de réponse moyen       <mat-icon> multiline_chart</mat-icon>
+
+                   </span>
+                    <span class="amount-value">{{generateRandomInteger(100, 400)}}ms </span>
+                </div>
+                <!-- <span class="card-detail">666</span>     -->
+            </div>
+        </div>
+    </div>
 </div>
 
    
-<div>
-<div class="row">
-    <div class="col md-6">
-        <h1>Les profils les plus consultés</h1>
-    </div>
-    <div class="col md-6">
-        <h1> Les profils les plus ajoutés</h1>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col md-6">
-        <h1> Temps de réponse moyen<mat-icon> bar_chart</mat-icon></h1>
-    </div>
-    <!-- <div class="col md-6">
-        
-    </div> -->
-</div>
-<!-- <div class="row"> -->
-   <h1> Repartition des profils par Direction</h1>
-
-
-
-</div>
-                
+       

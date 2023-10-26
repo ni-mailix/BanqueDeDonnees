@@ -10,11 +10,11 @@
         <p style="color: aliceblue;">Convertir PDF vers Image</p>
       </a> -->
       <a mat-list-item [routerLink]="['/dashboard']">
-        <p style="color: aliceblue;">Tableau de bord</p>
+        <p style="color: aliceblue;">Tableau de bord <mat-icon> multiline_chart</mat-icon></p>
       </a>
 
       <a mat-list-item [routerLink]="['/upload-doc']">
-        <p style="color: aliceblue;">Extraire texte</p>
+        <p style="color: aliceblue;">Scan de document<mat-icon>note_add</mat-icon></p>
       </a>
       <!-- <a mat-list-item [routerLink]="['/upload-doc']">
           Upload
@@ -23,17 +23,17 @@
         <p style="color: aliceblue;">Résultat Extraction</p>
       </a> -->
       <a mat-list-item [routerLink]="['/recherche-donnees']">
-        <p style="color: aliceblue;">Recherche des Données</p>
+        <p style="color: aliceblue;">Recherche des Données <mat-icon>search</mat-icon></p>
       </a>
       
       <a mat-list-item [routerLink]="['/historique']" >
-        <p style="color: aliceblue;">Historique de recherche</p>
+        <p style="color: aliceblue;">Historique de recherche <mat-icon>history</mat-icon></p>
           
         </a>
         <!-- <a mat-list-item [routerLink]="['/analyse-stat']">
           Analyse Statistique
         </a> --> 
-      <button mat-button (click)="onLogout()" style="   padding: auto; margin-left: 30px;margin-top: 20%;font-size: 25px;">Déconnexion</button>
+      <button mat-button (click)="clickMethod()" style="   padding: auto; margin-left: 30px;margin-top: 20%;font-size: 25px;">Déconnexion <mat-icon>exit_to_app</mat-icon></button>
       <!-- </ng-container> -->
     </mat-nav-list>
   </mat-drawer>

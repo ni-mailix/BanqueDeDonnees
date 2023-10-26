@@ -1,13 +1,52 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
 <div class="body form-section">
  <!-- <a  [routerLink]="['/historique']">Historique</a> -->
 
   <form (ngSubmit)="onSubmit()">
-    <input autocomplete="off" list="id-car" name="semantique" [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique" (ngModelChange)="selectChangeHandler($event)">
-    <datalist id="id-car">
-      <option *ngFor="let suggestion of suggestion" [value]="suggestion.nom+' '+suggestion.prenom">{{suggestion.nom}}- {{suggestion.prenom}} {{suggestion.age}}Ans {{suggestion.poste}}</option>
-    </datalist>
+    <div class="input-group mb-3">
+      <div class="form-outline">
+    <!-- <input class="form-control" autocomplete="off" list="id-car" name="semantique" [(ngModel)]="recherche.semantique" placeholder="Recherche sémantique" (ngModelChange)="selectChangeHandler($event)"> -->
+    
+
+    <div class="wrapper">
+      <div class="search-input">
+        <!-- <a href="" target="_blank" hidden></a> -->
+        <input type="text" autocomplete="off" placeholder="Taper votre recherche.." name="semantique" [(ngModel)]="recherche.semantique" (ngModelChange)="selectChangeHandler($event)" (keyup.Escape)="clearSuggest($event)">
+
+        <div *ngIf="(suggestion.length > 0)" class="autocom-box">
+      <li *ngFor="let suggestion of suggestion" (click)="selectSuggestion(suggestion.nom+' '+suggestion.prenom)">{{suggestion.nom}}- {{suggestion.prenom}} {{suggestion.age}}Ans {{suggestion.poste}}</li>
+        
+            <!-- <li>Rakoto</li>
+            <li>Rakotoson</li>
+            <li>ok</li>
+            <li>ok</li>
+            <li>ok</li>
+            <li>ok</li>
+            <li>ok</li>
+            <li>ok</li>
+            <li>ok</li> -->
+          
+          <!-- here list are inserted from javascript -->
+        </div>
+        <!-- <div class="icon"><i class="fas fa-search"></i></div> -->
+        <div class="icon" (click)="showOptions=!showOptions"><i class="fas {{ showOptions ? 'regular' : 'solid'}} fa-filter"></i></div>
+      </div>
+    </div>
+    <!-- <ul>
+      <li>ok</li>
+            <li (click)="selectSuggestion('ok')">ok</li>
+            <li (click)="selectSuggestion('non')">non</li>
+            <li (click)="selectSuggestion('ter')">ter</li>
+            <li (click)="selectSuggestion('10')">10</li>
+           
+    </ul> -->
+    </div><datalist id="id-car">
+      <!-- <option *ngFor="let suggestion of suggestion" [value]="suggestion.nom+' '+suggestion.prenom">{{suggestion.nom}}- {{suggestion.prenom}} {{suggestion.age}}Ans {{suggestion.poste}}</option> -->
+    </datalist></div>
       <div [style.visibility]="showOptions ? 'visible' : 'hidden'"  class="a">
-      <input [(ngModel)]="recherche.diplome"name="diplome"  placeholder="Diplôme">
+      <input  [(ngModel)]="recherche.diplome"name="diplome"  placeholder="Diplôme">
       <input name="universite" [(ngModel)]="recherche.universite" placeholder="Université">
       <input name="experience"  [(ngModel)]="recherche.experience" placeholder="Expérience">
       <input  name="langue" [(ngModel)]="recherche.langue"  placeholder="Langue">
@@ -15,16 +54,16 @@
       <input type="checkbox" name="check" id="" name="check" [(ngModel)]="recherche.check" value="{{recherche.check}}">
 
     </div>
-    <button type="submit">Rechercher</button>
+    <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
   </form>
-  <button (click)="showOptions=!showOptions">
+  <!-- <button (click)="showOptions=!showOptions">
     {{ showOptions ? 'Masquer les options' :  'Afficher les options'}}
-  </button>
+  </button> -->
   <mat-progress-bar  *ngIf="showProgressBar" mode="query"></mat-progress-bar>
-
+  
   <!-- Time: {{ time | async }} -->
 
-<div *ngIf="(resultatsDeRecherche.length > 0)">
+<!-- <div *ngIf="(resultatsDeRecherche.length > 0)">
   <h2>Résultats de recherche :</h2>
   <ul>
     <li *ngFor="let resultat of resultatsDeRecherche">
@@ -32,13 +71,32 @@
        {{resultat.age}}Ans 
       <p>{{ resultat.titre }}</p>
       <div *ngIf="(resultat.adresse)"><strong>Adresse:</strong>{{ resultat.adresse }} </div>
-      <!-- <div *ngIf="(resultat.langues)"><strong>Langues:</strong>{{ resultat.langues }} </div> -->
       <div *ngIf="(resultat.competences)"><strong>Competences:</strong>{{ resultat.competences }} </div>
-      <!-- <button>Consulter le profil</button> -->
       <hr>
     </li>
   </ul>
+</div> -->
+<section class="attendance" *ngIf="(resultatsDeRecherche.length > 0)">
+  <div class="attendance-list">
+    <h1>Resultats de recherche</h1>
+<table class="table">
+  <thead>
+  <th>Informations personnelles</th>
+  <th>Competences</th>
+  <th></th></thead>
+  <tr *ngFor="let resultat of resultatsDeRecherche">
+    <td>
+      {{ resultat.nom }}  {{resultat.prenom}} 
+      {{resultat.age}}Ans 
+    </td>
+    <td *ngIf="(resultat.competences)">
+      {{ resultat.competences }}
+    </td>
+    <td><button>Consulter le profil</button></td>
+  </tr>  
+</table>
 </div>
+</section>
 <!-- Emision evenement de pagination
 Transformation en composant child
 -->

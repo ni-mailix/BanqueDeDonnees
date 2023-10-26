@@ -30,7 +30,7 @@
     body{
       padding: 50px;
       font-family: 'Roboto', sans-serif;
-      /* background-color: #F5F5F5; */
+      background-color: #F5F5F5;
     }
     /*Sign In Form*/
     .signin{
@@ -57,7 +57,7 @@
     }
     .active{
       padding-left: 25px;
-      /* color: #fff; */
+      color: #fff;
     }
     .nonactive {
       color: rgba(255, 255, 255, 0.6);

@@ -1,6 +1,7 @@
-<h2>Historique</h2>
+<h2 class="main--title">Historique</h2>
+
 <div>
-    <button>Vider l'historique</button>
+    <button class="btn" (click)="clickMethod('name')">Vider l'historique <mat-icon>delete_outline</mat-icon></button>
 </div>
 <div>
     <h3>Aujourd'hui</h3>
@@ -14,9 +15,10 @@
     </ul>
 </div>
 <div>
-    <select name="" id="">
+    <select name="" class="form-control" style="width: 150px;" >
         <option value="">Ce mois-ci</option>
         <option value="">Il y a 3 mois</option>
         <option value="">Il y a une année</option>
     </select>
 </div>
+ 

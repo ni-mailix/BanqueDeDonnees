@@ -99,5 +99,11 @@ export class RechercheDonneesComponent {
       },
     );
   }
+  clearSuggest (event: any) {
+    this.suggestion=[];
+  }
+  selectSuggestion(suggestion: string) {
+    this.recherche.semantique = suggestion; // Complete the input with the selected suggestion
+  }
   
 }

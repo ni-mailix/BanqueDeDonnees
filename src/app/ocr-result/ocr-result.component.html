@@ -2,10 +2,11 @@
     <h1>Résultat de l'OCR</h1>
     <p>Texte extrait : {{ extractedText }}</p>
   </div> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container">
-  <h1>Résultat de l'OCR</h1>
-  <p>Texte extrait : </p>
+  <h1 class="main--title">Résultat de l'OCR</h1>
+  <!-- <p>Texte extrait : </p> -->
   <textarea name="" id="" cols="150" rows="30">
     {{ extractedTextValue }}
   </textarea>
@@ -13,5 +14,9 @@
   
 </div>
 <div class="container" >
-  <button style="margin: 0 50%;" onclick="(alert('Enregistrement dans la base réussi'))">Enregistrer</button>
+  <!-- <button class="btn"><i class="fa fa-download"></i> Telecharger</button> -->
+  <button type="button" style="background-color:  rgb(24, 54, 95);" class="btn btn-primary btn-lg btn-block" onclick="(alert('Enregistrement dans la base réussi'))">Enregistrer <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    </button>
+
+  <!-- <button style="margin: 0 50%;" onclick="(alert('Enregistrement dans la base réussi'))">Enregistrer</button> -->
 </div>

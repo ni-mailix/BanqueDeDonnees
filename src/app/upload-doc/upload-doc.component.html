@@ -1,8 +1,19 @@
+
 <div class="form-section">
-    <h2>Upload de Documents</h2>
+    <h2 class="main--title">Scan de document  <mat-icon>cloud_upload</mat-icon>
+    </h2>
+    <div class="file-drop-area">
     <form (ngSubmit)="onSubmit($event)">
-      <input type="file" accept=".*" required #fileInput>
-      <button type="submit">Uploader</button>
+      <div class="file-upload-wrapper">
+      
+        <input   class="btn"id="input-file-now" type="file" accept=".*" required #fileInput>      </div>
+      <button class="btn up">Uploader</button>
     </form>
+     
   </div>
+  </div>
+  
+
+
+
   

@@ -34,10 +34,12 @@ url:String="http://127.0.0.1:8080/";
       .set('size', recherche.size)
       .set('heure',this.formatDate(new Date()));
       console.log(params.get('heure'));
-    const results = [
-      { nom: 'CV 1', description: 'Rakotobe Sitraka etudiante ' },
-      { nom: 'Résultat 2', description: 'Description du résultat 2' },
-    ];
+    // const results = [
+    //   { nom: 'Rakoto',prenom:'Jean',competences: 'Comptable ' ,age:23},
+    //   { nom: 'Rafidiarison',prenom:'Safidy',competences: 'Ingénieur ' ,age:16},
+    //   { nom: 'Randrianarison',prenom:'Fitia',competences: 'Ressources Humaines ' ,age:17},
+    //   { nom: 'Robert',prenom:'Nick',competences: 'Consultant ' ,age:44},
+    // ];
      let apiUrl = this.url+'data'; 
     console.log(apiUrl,{params});
     return this.http.get(apiUrl,{params});
@@ -57,11 +59,11 @@ url:String="http://127.0.0.1:8080/";
     .set('size', recherche.size);//parametre des requetes
 
       
-    const suggestion = [
-      { nom: 'CV 1', description: 'Rakotobe Sitraka etudiante ' },
-      { nom: 'Résultat 2', description: 'Description du résultat 2' },
+    // const suggestion = [
+    //   { nom: 'CV 1', description: 'Rakotobe Sitraka etudiante ' },
+    //   { nom: 'Résultat 2', description: 'Description du résultat 2' },
    
-    ];
+    // ];
     // return of(suggestion); 
     let apiUrl = this.url+'complete'; 
     // console.log(apiUrl,{params});

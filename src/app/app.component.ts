@@ -22,9 +22,17 @@ export class AppComponent implements OnInit {
     console.log("ngoninit " + this.isAuthenticated);
   }
 
+  
   onLogout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
     this.router.navigate(['/authentification']);
+  }
+  
+  clickMethod() {
+    if(confirm("Vous êtes sur le point d'arrêter votre session ")) {
+      this.onLogout();
+      // console.log("Implement delete functionality here");
+    }
   }
 }
